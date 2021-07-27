@@ -10,14 +10,30 @@ public class Card : MonoBehaviour
     public bool Matched { get { return matched; } }
     public int CardID { get { return cardID; } }
     public GameObject SelectedSprite;
+    private CardGameHandler gameHandler;
+
+    private float flipAtTime;
+    private bool isFlipping = false;
 
     private void Start()
     {
         SelectedSprite.SetActive(false);
+        gameHandler = FindObjectOfType<CardGameHandler>();
+    }
+
+    private void Update()
+    {
+        if(isFlipping && flipAtTime < Time.fixedTime)
+        {
+            SelectedSprite.SetActive(false);
+            isFlipping = false;
+        }
     }
     public void SetMatched(bool value)
     {
         matched = value;
+        //if value == true start animation
+        Destroy(gameObject, 2);
     }
 
     public void SetSelected(bool value)
@@ -25,10 +41,17 @@ public class Card : MonoBehaviour
         SelectedSprite.SetActive(value);
     }
 
+    public void SetSelected(bool value, float flipWaitTime)
+    {
+        flipAtTime = Time.fixedTime + flipWaitTime;
+        isFlipping = true;
+    }
+
     private void OnMouseDown()
     {
-        if (!matched)
+        if (!matched && gameHandler.CanClick(this))
         {
+            SetSelected(true);
             FindObjectOfType<CardGameHandler>().CardSelected(this);
         }
     }
