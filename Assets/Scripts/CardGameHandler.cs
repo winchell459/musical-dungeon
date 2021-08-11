@@ -29,7 +29,7 @@ public class CardGameHandler : MonoBehaviour
 
     private void Start()
     {
-        MovesCount.Moves = Guesses;
+        MovesCount.Moves = 0;
         SetupBoard();
     }
     private void Update()
@@ -52,20 +52,29 @@ public class CardGameHandler : MonoBehaviour
         {
             availableCards.Add(i);
         }
-        List<int> pickedCards = new List<int>();//random cards to be placed
-        while(pickedCards.Count < cardCount)
+        // randomly pick from available cards
+        List<GameObject> pickedCards = new List<GameObject>();//random cards to be placed
+        while (pickedCards.Count < cardCount * 2)
         {
             int index = Random.Range(0, availableCards.Count);
-            pickedCards.Add(availableCards[index]);
-            pickedCards.Add(availableCards[index]);
+            pickedCards.Add(CardFacePrefabs[availableCards[index]]);
+            pickedCards.Add(CardBackPrefabs[availableCards[index]]);
             availableCards.RemoveAt(index);
         }
-        int[] cardPlacements = new int[cardCount * 2];// random placement of pickedCards
-        for(int i = 0; i < cardPlacements.Length; i += 1)
+        
+        // shuffle all cards
+        for(int i = 0; i < pickedCards.Count; i += 1)
         {
             int index = Random.Range(0, pickedCards.Count);
-            cardPlacements[i] = pickedCards[index];
-            pickedCards.RemoveAt(index);
+            GameObject temp = pickedCards[i];
+            pickedCards[i] = pickedCards[index];
+            pickedCards[index] = temp;
+        }
+
+        for(int i = 0; i < CardPlaces.Length; i += 1)
+        {
+            Instantiate(pickedCards[i], CardPlaces[i].position, Quaternion.identity);
+            
         }
 
     }

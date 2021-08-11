@@ -145,7 +145,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 561413411}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.2, y: 0, z: 0}
+  m_LocalPosition: {x: -3.6, y: 2.8, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1689773981}
@@ -245,9 +245,33 @@ MonoBehaviour:
   waitTime: 0.2
   lastWait: 0
   flipWaitTime: 1
-  CardPlaces: []
-  CardFacePrefabs: []
-  CardBackPrefabs: []
+  CardPlaces:
+  - {fileID: 1532172475}
+  - {fileID: 1123175743}
+  - {fileID: 1989340783}
+  - {fileID: 652501050}
+  - {fileID: 1428318717}
+  - {fileID: 596286643}
+  - {fileID: 1051640495}
+  - {fileID: 1358350426}
+  - {fileID: 758388948}
+  - {fileID: 1914750271}
+  - {fileID: 614130521}
+  - {fileID: 561413412}
+  CardFacePrefabs:
+  - {fileID: 4941727148181875416, guid: 4403d2ea3331a214facdfce5aa762d73, type: 3}
+  - {fileID: 4941727148181875416, guid: d1434839f137ba04aa9f91808d1de2f9, type: 3}
+  - {fileID: 4941727148181875416, guid: 5a051729a74c9bb42bd005ccf3e7cbb4, type: 3}
+  - {fileID: 4941727148181875416, guid: 83b49a7a478028f4389f7d48023c12e4, type: 3}
+  - {fileID: 4941727148181875416, guid: f39bc712bb0faf9418db3ccbdd466f7a, type: 3}
+  - {fileID: 4941727148181875416, guid: dc7fa79383e796b4ab489ab1a3f19db3, type: 3}
+  CardBackPrefabs:
+  - {fileID: 4941727148181875416, guid: 56a1800799614cb45bc837e63c7fbfdb, type: 3}
+  - {fileID: 4941727148181875416, guid: 9b9bb2980c9772546bf2ec6442299c36, type: 3}
+  - {fileID: 4941727148181875416, guid: 37e670ab21a2d1144a5aa9a7b2e61372, type: 3}
+  - {fileID: 4941727148181875416, guid: 1421d44b67bc77a4ea8d80fdfc726e3f, type: 3}
+  - {fileID: 4941727148181875416, guid: 2b090ffafe51d24438920575a768d45f, type: 3}
+  - {fileID: 4941727148181875416, guid: 5642cd49231d9f94fbee4880fbafdcf0, type: 3}
 --- !u!4 &652415140
 Transform:
   m_ObjectHideFlags: 0

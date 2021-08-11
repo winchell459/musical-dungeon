@@ -39,6 +39,10 @@ public class Menu : MonoBehaviour
         Screen1.transform.localScale = screenScale;
         Settings.transform.localScale = screenScale;
 
+        foreach(MiniGameButton button in Minigames.GetComponentsInChildren<MiniGameButton>())
+        {
+            button.SetupButton(x);
+        }
     }
 
     int screenIndex = 0;
