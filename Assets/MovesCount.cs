@@ -16,6 +16,6 @@ public class MovesCount : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        moves.text = "Moves: " + Moves;
+        moves.text = Moves.ToString();
     }
 }

@@ -38,7 +38,7 @@ public class Card : MonoBehaviour
     public void SetMatched(bool value)
     {
         matched = value;
-        //sparkParticle.Play();
+        GetComponent<Animator>().SetTrigger("Spark");
         Destroy(gameObject, 10);
     }
 

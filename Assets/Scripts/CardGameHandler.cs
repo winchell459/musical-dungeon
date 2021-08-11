@@ -16,9 +16,21 @@ public class CardGameHandler : MonoBehaviour
 
     private bool gameCompleted = false;
 
+    public Transform[] CardPlaces;
+    public GameObject[] CardFacePrefabs;
+    public GameObject[] CardBackPrefabs;
+
+    //public MovesCount MovesCountDisplay;
+
     public enum CardGameStates
     {
 
+    }
+
+    private void Start()
+    {
+        MovesCount.Moves = Guesses;
+        SetupBoard();
     }
     private void Update()
     {
@@ -31,7 +43,32 @@ public class CardGameHandler : MonoBehaviour
             print("Win");
         }
     }
+    void SetupBoard()
+    {
+        int cardCount = CardPlaces.Length / 2;
+        int availableCount = CardFacePrefabs.Length;
+        List<int> availableCards = new List<int>();
+        for(int i = 0; i < availableCount; i+= 1)
+        {
+            availableCards.Add(i);
+        }
+        List<int> pickedCards = new List<int>();//random cards to be placed
+        while(pickedCards.Count < cardCount)
+        {
+            int index = Random.Range(0, availableCards.Count);
+            pickedCards.Add(availableCards[index]);
+            pickedCards.Add(availableCards[index]);
+            availableCards.RemoveAt(index);
+        }
+        int[] cardPlacements = new int[cardCount * 2];// random placement of pickedCards
+        for(int i = 0; i < cardPlacements.Length; i += 1)
+        {
+            int index = Random.Range(0, pickedCards.Count);
+            cardPlacements[i] = pickedCards[index];
+            pickedCards.RemoveAt(index);
+        }
 
+    }
     public bool CanClick(Card card)
     {
         return !waiting;
@@ -58,8 +95,8 @@ public class CardGameHandler : MonoBehaviour
                 selectedCard.SetMatched(true);
                 CheckGameCompleted();
                 SelectedCard = null;
-                Guesses += 1;  
-
+                Guesses += 1;
+                MovesCount.Moves = Guesses;
             }
             else
             {
@@ -69,7 +106,7 @@ public class CardGameHandler : MonoBehaviour
                 SelectedCard = null;
                 Guesses += 1;
                 Debug.Log("Cards not matching");
-
+                MovesCount.Moves = Guesses;
             }
         }          
     }
